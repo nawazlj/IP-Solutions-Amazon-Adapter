@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+		
+		<title>Product Data Exchange <i>PDX</i>i></title>
+
+		  <!-- Bootstrap Core CSS -->
+		  <link href="../css/bootstrap.min.css" rel="stylesheet">
+		  
+		  <style>
+
+
+.scroll-lock {
+   overflow-x: hidden; 
+}
+
+</style>
+		  <!-- MetisMenu CSS -->
+		  <link href="../css/metisMenu.min.css" rel="stylesheet">
+		  <!-- DataTables CSS -->
+		  <link href="../css/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+		  <link href="../css/popup/jquery.simple-popup.min.css" rel="stylesheet" type="text/css">
+		  <!-- DataTables Responsive CSS -->
+		  <link href="../css/dataTables/dataTables.responsive.css" rel="stylesheet">
+		  <!-- Custom CSS -->
+		  <link href="../css/pdx.css" rel="stylesheet">
+		  <link href="Style.css" rel="stylesheet">
+		  <link href="sweetalert.css" rel="stylesheet">
+		  <!-- Custom Fonts -->
+		  <link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css">
+		  <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+		  <script src="sweetalert.js"></script>
+		  
+		  
+		  <style>
+		  
+		  		input[type=textarea], select {
+					  background-image: url('/css/bgnd_search.png');
+					  background-position: 30px 40px;
+					  align:center-right
+					  background-repeat: no-repeat;
+					  width: 25%;
+					  font-size: 14px;
+					  padding: 12px 20px 12px 20px;
+					  border: 1px solid #ddd;
+					  margin-bottom: 12px;
+					}
+		  
+		  </style>
+    </head>
+    <body >    
+		  <script>
+				function create()
+				{
+					CreateSoureDetails();
+				} 
+				function refreshSourcePage()
+				{
+
+				  UpdateSourceDetails(uId);
+				  window.location.reload();
+				} 
+
+				function getSearchSource()
+				{
+				  var sourceName= document.getElementById('srclistSearch').value
+				  var connName= document.getElementById('sConnNameSearch').value
+				  
+				  console.log(sourceName);
+				  console.log(connName);
+				  
+				  if(sourceName != null && connName != null)
+					  {
+					  	getSourceDetails(sourceName, connName);
+					  }
+				}
+		  </script>
+        <div id="wrapper">
+			<!-- Navigation -->
+            <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="index.html">Product Data Exchange <i>PDX</i></a>
+                </div>
+
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <ul class="nav navbar-nav navbar-left navbar-top-links">
+                    <li><a href="#"><i class="fa fa-home fa-fw"></i> Home</a></li>
+                </ul>
+
+                <ul class="nav navbar-right navbar-top-links">
+                    <li class="dropdown navbar-inverse">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-bell fa-fw"></i> <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu dropdown-alerts">
+                            <li>
+                                <a href="#">
+                                    <div>
+                                        <i class="fa  fa-plus-square"></i> New Products Added
+                                        <span class="pull-right text-muted small">2 minutes ago</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <div>
+                                        <i class="fa  fa-plus-square"></i> 3 New E-Tailer
+                                        <span class="pull-right text-muted small">5 hours ago</span>
+                                    </div>
+                                </a>
+                            </li>
+                           <li>
+                                <a class="text-center" href="#">
+                                   <center> <strong>See All Alerts</strong></center>
+                                    <i class="fa fa-angle-right"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+					
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-user fa-fw"></i> User1 <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user">
+                            <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <!-- /.navbar-top-links -->
+
+                <div class="navbar-default sidebar" role="navigation">
+                    <div class="sidebar-nav navbar-collapse">
+                        <ul class="nav" id="side-menu">
+                            <li class="sidebar-search">
+                                <div class="input-group custom-search-form">
+                                    <input type="textarea" class="form-control" placeholder="Search...">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-primary" type="button">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+									</span>
+                                </div>
+                                <!-- /input-group -->
+                            </li>
+                            <li>
+                                <a href="dashboard.html" class="active"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            </li>
+                            
+                            <li>
+                                <a href="#"><i class="fa fa-table fa-fw"></i>Catalog Management <span class="fa arrow"></span></a></a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="catalog.html">Manage Catalog</a>
+                                    </li>
+                                    <li>
+                                        <a href="mapping.html">Catalog Mapping</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-table fa-fw"></i>Products <span class="fa arrow"></span></a></a>
+                                <ul class="nav nav-second-level">
+                                <li>
+                                        <a href="products.html">View All Products</a>
+                                    </li>
+                                    <li>
+                                        <a href="tables.html">View All Lists</a>
+                                    </li>
+                                    
+                                </ul>	
+                            </li>
+							<li>
+                                <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Administration<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="Manage Source.html">Manage Sources</a>
+                                    </li>
+                                    <li>
+                                        <a href="Manage Target.html">Manage Targets</a>
+                                    </li>
+                                </ul>
+                                <!-- /.nav-second-level -->
+                            </li>                           
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+    		<div id="page-wrapper">
+      			<div class="row">
+        			<div class="col-lg-12">
+          				<h1 class="page-header">Manage Source</h1>
+       				</div>
+      			</div>
+
+	      		<div class="row">
+	        		<div class="col-lg-12">
+	          			<div class="panel-body">
+	            			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pleft0 pright0">
+	              				<h5 id="BtnAlign">
+	              					<a class="addbtn" target="_blank" style="color:white; text-decoration:none" data-target="#ModalForNewProject" data-toggle="modal"><img src="../images/addnew.png" title="Add New Source"></a>
+	              				
+	              						<div class="col-lg-12">
+							
+											<!-- /.panel -->
+				                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+											&nbsp;&nbsp;&nbsp;&nbsp;
+											<input type="textarea" id="srclistSearch" list='Sourcelist' placeholder="Search for Source name.." title="Source name">
+												 <datalist id='Sourcelist'>
+												   <option value='PDH'>
+												   <option value='eBiz'>
+												   <option value='SAP'>
+												</datalist>												
+				                            
+				                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+											<input type="textarea" id="sConnNameSearch" placeholder="Search for Connection Name.." title="Connection name">
+											
+											<a class="addbtn" target="_blank" style="color:white; text-decoration:none" onclick="getSearchSource()"><img src="../images/bgnd_search.png" title="Search Source"></a>
+				                            <!-- /.panel-body -->
+                        					<!-- /.panel .chat-panel -->
+                    					</div>
+	              				
+	              				</h5>
+	              				<br>
+	            			</div>
+	
+	            			<div class="dataTable_wrapper">
+	              				<table class="table table-striped table-bordered table-hover" id="subsiteList">
+	              					<div class="container"></div>
+	                					<thead>
+	                  						<tr>
+	                    						<th>Source Name</th>
+	
+	                    						<th>Connection Name</th>
+	                    						
+	                    						<th>User Name</th>
+	                    						
+	                    						<th>Password</th>
+	                    						
+	                    						<th>Cloud Url</th>
+	                    						
+	                    						<th>DB Directory Name</th>
+	                    						
+	                    						<th>Doc Name</th>
+	
+	                    						<th>Update</th>
+	
+	                    						<th>Delete</th>
+	                    					</tr>
+	                				   </thead>
+	                				   <tbody> </tbody>
+	                			   </table>
+	            		 	</div>
+	          			</div>
+	
+		          		<div class="modal fade" id="ModalForNewProject" role="dialog" title="Create new Project">
+						            <div class="modal-dialog">  
+
+		            		<fieldset>
+		              			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 cls-contriute">
+		                			<h5 class="contributtitle">Add Source Details</h5>
+		              			</div>
+		            		</fieldset>
+		
+		            		<div id="ModelBody">
+		              			<div class="form-horizontal well bs-component cls-divthoug" id="ModalValidation">
+		                			<fieldset id="bodymodal">
+		                  				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
+		                    				<label class="col-lg-4 col-md-4 col-sm-4 col-xs-4 cls-thought">Source Name <span class="red">*</span></label>
+		
+		                    				<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+		                      					<input class="form-control" type="text" id="srcilist" required="true"> <span class="ErMsg" id="ProNmMsg">Please fill out this field!</span>
+		                    				</div>
+		                  				</div>
+		
+		                  				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
+		                    				<label class="col-lg-4 col-md-4 col-sm-4 col-xs-4 cls-thought">Connection Name<span class="red">*</span></label>
+		
+		                    				<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+		                      					<input class="form-control" type="text" id="siConnName" required="true"> <span class="ErMsg" id="ProNmMsg">Please fill out this field!</span>
+		                    				</div>
+		                  				</div>
+		                  				
+		                  				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
+		                    				<label class="col-lg-4 col-md-4 col-sm-4 col-xs-4 cls-thought">User Name<span class="red">*</span></label>
+		
+		                    				<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+		                      					<input class="form-control" type="text" id="piUname" required="true"> <span class="ErMsg" id="ProNmMsg">Please fill out this field!</span>
+		                    				</div>
+		                  				</div>
+		                  				
+		                  				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
+		                    				<label class="col-lg-4 col-md-4 col-sm-4 col-xs-4 cls-thought">Password<span class="red">*</span></label>
+		
+		                    				<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+		                      					<input class="form-control" type="password" id="piPwd" required="true"> <span class="ErMsg" id="ProNmMsg">Please fill out this field!</span>
+		                    				</div>
+		                  				</div>
+		                  				
+		                  				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
+		                    				<label class="col-lg-4 col-md-4 col-sm-4 col-xs-4 cls-thought">Cloud Url<span class="red">*</span></label>
+		
+		                    				<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+		                      					<input class="form-control" type="text" id="piCloudUrl" required="true"> <span class="ErMsg" id="ProNmMsg">Please fill out this field!</span>
+		                    				</div>
+		                  				</div>
+		                  				
+		                  				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
+		                    				<label class="col-lg-4 col-md-4 col-sm-4 col-xs-4 cls-thought">DB Directory Name<span class="red">*</span></label>
+		
+		                    				<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+		                      					<input class="form-control" type="text" id="piDBDir" required="true"> <span class="ErMsg" id="ProNmMsg">Please fill out this field!</span>
+		                    				</div>
+		                  				</div>
+		                  				
+		                  				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
+		                    				<label class="col-lg-4 col-md-4 col-sm-4 col-xs-4 cls-thought">Doc Name<span class="red">*</span></label>
+		
+		                    				<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+		                      					<input class="form-control" type="text" id="piDocName" required="true"> <span class="ErMsg" id="ProNmMsg">Please fill out this field!</span>
+		                    				</div>
+		                  				</div>		                  						                  						                  				
+		
+		                  				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
+		                    				<div class="col-lg-offset-7 col-lg-2 cls-divbtn">
+		                      					<input class="cls-savecancel" id="btnsave" type="button" value="Submit" onclick="create();" data-dismiss="modal">
+		                    				</div>
+		
+		                    				<div class="col-lg-2 col-lg-offset-1">
+		                      					<input class="cls-savecancel" type="reset" value="Cancel" id="btnCancel" data-dismiss="modal" >
+		                    				</div>
+		                  				</div>
+		                			</fieldset>
+		              			</div>
+		
+		              			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group cls-sucees" style="background-color:#edeff2" id="successMessage"></div>
+		            		</div>
+		
+		            		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group LoadingDiv" id="loader" style="display:none;padding: 66px;background-color: #0a2f7d!important;">
+		              			<div class="loader">
+		                			Loading...
+		              			</div>
+		
+		              			<div class="loader1">
+		                			<p class="ones"></p>
+		              			</div>
+		            		</div>
+							</div>
+						</div>
+	          
+	          			<!-- update modal -->
+	
+		          		<div class="modal fade " id="ModalForUpdateEmployee" role="dialog" title="Update New Employee">
+						            <div class="modal-dialog">  
+		            		<fieldset>
+		              			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 cls-contriute">
+		                			<h5 class="contributtitle">Update Source Information</h5>
+		              			</div>
+		            		</fieldset>
+		
+		            		<div id="ModelBody">
+		              			<div class="form-horizontal well bs-component cls-divthoug" id="ModalValidation">
+		                			<fieldset id="bodymodal">
+		                  				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
+		                    				<label class="col-lg-4 col-md-4 col-sm-4 col-xs-4 cls-thought">Source Name <span class="red">*</span></label>
+		                    				<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+		                      					<input class="form-control" type="text" id="srculist">
+		                      						<span class="ErMsg" id="ProNmMsg">Please fill out this field!</span>
+		                    				</div>
+		                  				</div>
+		
+		                  				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
+		                    				<label class="col-lg-4 col-md-4 col-sm-4 col-xs-4 cls-thought">Connection Name<span class="red">*</span></label>
+		                    				<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+		                      					<input class="form-control" type="text" id="suConnName"> 
+		                      						<span class="ErMsg" id="ProNmMsg">Please fill out this field!</span>
+		                    				</div>
+		                  				</div>
+		                  				
+		                  				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
+		                    				<label class="col-lg-4 col-md-4 col-sm-4 col-xs-4 cls-thought">User Name<span class="red">*</span></label>
+		                    				<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+		                      					<input class="form-control" type="text" id="puUname"> 
+		                      						<span class="ErMsg" id="ProNmMsg">Please fill out this field!</span>
+		                    				</div>
+		                  				</div>
+		                  				
+		                  				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
+		                    				<label class="col-lg-4 col-md-4 col-sm-4 col-xs-4 cls-thought">Password<span class="red">*</span></label>
+		                    				<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+		                      					<input class="form-control" type="password" id="puPwd"> 
+		                      						<span class="ErMsg" id="ProNmMsg">Please fill out this field!</span>
+		                    				</div>
+		                  				</div>
+		                  				
+		                  				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
+		                    				<label class="col-lg-4 col-md-4 col-sm-4 col-xs-4 cls-thought">Cloud Url<span class="red">*</span></label>
+		                    				<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+		                      					<input class="form-control" type="text" id="puCloudUrl"> 
+		                      						<span class="ErMsg" id="ProNmMsg">Please fill out this field!</span>
+		                    				</div>
+		                  				</div>
+		                  				
+		                  						                  						                  						                  						                  				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
+		                    				<label class="col-lg-4 col-md-4 col-sm-4 col-xs-4 cls-thought">DB Directory Name<span class="red">*</span></label>
+		                    				<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+		                      					<input class="form-control" type="text" id="puDBDir"> 
+		                      						<span class="ErMsg" id="ProNmMsg">Please fill out this field!</span>
+		                    				</div>
+		                  				</div>
+		                  				
+		                  				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
+		                    				<label class="col-lg-4 col-md-4 col-sm-4 col-xs-4 cls-thought">Doc Name<span class="red">*</span></label>
+		                    				<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+		                      					<input class="form-control" type="text" id="puDocName"> 
+		                      						<span class="ErMsg" id="ProNmMsg">Please fill out this field!</span>
+		                    				</div>
+		                  				</div>		                  				
+		
+		                  				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
+		                    				<div class="col-lg-offset-7 col-lg-2 cls-divbtn">
+		                      					<input class="cls-savecancel" id="btnsave" type="button" onclick="UpdateSourceDetails(uId);" value="Save" data-dismiss="modal">
+		                    				</div>
+		
+		                    				<div class="col-lg-2 col-lg-offset-1">
+		                      					<input class="cls-savecancel" type="reset" value="Cancel" id="btnCancel" data-dismiss="modal" >
+		                    				</div>
+		                  				</div>
+		                			</fieldset>
+		              			</div>
+		            		</div>
+		          		</div>
+					</div>
+					</div>
+				</div>
+    		</div>
+        </div>
+        <!-- /#wrapper -->
+
+        <!-- jQuery -->
+        <script src="../js/jquery.min.js"></script>
+		
+		        <script src="../js/dataTables/jquery.dataTables.min.js"></script>
+        <script src="../js/dataTables/dataTables.bootstrap.min.js"></script>
+
+        
+		<script>
+			$(function()
+			{
+				var appendthis =  ("<div class='modal-overlay js-modal-close'><\/div>");
+				$('a[data-modal-id]').click(function(e) 
+				{
+                	e.preventDefault();
+    				$("body").append(appendthis);
+    				$(".modal-overlay").fadeTo(500, 0.7);
+    				//$(".js-modalbox").fadeIn(500);
+                	var modalBox = $(this).attr('data-modal-id');
+                	$('#'+modalBox).fadeIn($(this).data());
+        		});  
+				$(".js-modal-close, .modal-overlay").click(function() 
+				{
+    				$(".modal-box, .modal-overlay").fadeOut(500, function() 
+    				{
+        				$(".modal-overlay").remove();
+    				});
+				});
+
+  				$(window).resize(function() 
+  				{
+    				$(".modal-box").css({
+        					top: ($(window).height() - $(".modal-box").outerHeight()) / 2,
+        					left: ($(window).width() - $(".modal-box").outerWidth()) / 2
+    							});
+  				});
+
+  				$(window).resize();
+
+  			});
+  		</script> 
+  		<script src="../js/popup/jquery.simple-popup.min.js"></script> 
+  		
+  		<script>
+			$(document).ready(function() 
+			{
+  				$("a.demo-1").simplePopup();
+  				$("a.demo-2").simplePopup({ type: "html", htmlSelector: "#popup1" });
+  			});
+  		</script> 
+  		
+  		<script type="text/javascript">
+			var _gaq = _gaq || [];
+  			_gaq.push(['_setAccount', 'UA-36251023-1']);
+  			_gaq.push(['_setDomainName', 'jqueryscript.net']);
+  			_gaq.push(['_trackPageview']);
+
+  			(function() 
+  			{
+    			var ga = document.createElement('script'); 
+    			ga.type = 'text/javascript'; 
+    			ga.async = true;
+    			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  			})();
+		</script>        
+
+        <!-- Bootstrap Core JavaScript -->
+        <script src="../js/bootstrap.min.js"></script>
+
+        <!-- Metis Menu Plugin JavaScript -->
+        <script src="../js/metisMenu.min.js"></script>
+
+        <!-- Custom Theme JavaScript -->
+        <script src="../js/pdx.js"></script>
+        
+        <!-- For get and put restApi -->
+        <script src="../js/manageSource.js"></script>  
+   		<script>
+	          $(document).ready(function() {
+	                $('#dataTables-example').DataTable({
+	                        responsive: true
+	                });
+	            });
+  		</script>        
+
+    </body>
+</html>

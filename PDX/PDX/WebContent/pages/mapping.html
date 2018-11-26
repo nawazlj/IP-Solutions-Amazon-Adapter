@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        
+
+             <title>Product Data Exchange <i>PDX</i>i></title>
+
+        <!-- Bootstrap Core CSS -->
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <style>
+        body {overflow-x: hidden;}
+			ul, #myUL {
+			  list-style-type: none;
+			}
+
+			#myUL {
+			  margin: 0;
+			  padding: 0;
+			}
+
+
+			.caretsrc {
+			  cursor: pointer;
+			  -webkit-user-select: none; /* Safari 3.1+ */
+			  -moz-user-select: none; /* Firefox 2+ */
+			  -ms-user-select: none; /* IE 10+ */
+			  user-select: none;
+			  color:Orange;
+			  font-size:20px;
+			}
+
+			.caretsrc::before {
+			  content: "\25B6";
+			  color: black;
+			  display: inline-block;
+			  margin-right: 6px;
+			}
+
+			.caret-downsrc::before {
+			  -ms-transform: rotate(90deg); /* IE 9 */
+			  -webkit-transform: rotate(90deg); /* Safari */'
+			  transform: rotate(90deg);  
+			}
+
+			.nestedsrc {
+			  display: none;
+			  color:green;
+			}
+
+			.activesrc {
+			  display: block;
+			}	
+
+			.caret1 {
+			  cursor: pointer;
+			  -webkit-user-select: none; /* Safari 3.1+ */
+			  -moz-user-select: none; /* Firefox 2+ */
+			  -ms-user-select: none; /* IE 10+ */
+			  user-select: none;
+			  color:orange;
+			  font-size:20px;
+			}
+
+			.caret1::before {
+			  content: "\25B6";
+			  color: black;
+			  display: inline-block;
+			  margin-right: 6px;
+			}
+
+			.caret-down1::before {
+			  -ms-transform: rotate(90deg); /* IE 9 */
+			  -webkit-transform: rotate(90deg); /* Safari */'
+			  transform: rotate(90deg);  
+			}
+
+			.nested1 {
+			  display: none;
+			  color:green;
+			}
+
+			.active1{
+			  display: block;
+			}				
+				
+	
+			* {
+				box-sizing: border-box;
+			}
+	
+			/* Create two equal columns that floats next to each other */
+			.columnnew1 {
+				float: left;
+				width: 50%;
+				padding: 10px;
+				height: 300px; /* Should be removed. Only for demonstration */
+			}
+			.columnnew2 {
+				float: right;
+				width: 50%;
+				padding: 10px;
+				height: 300px; /* Should be removed. Only for demonstration */
+			}			
+	
+			/* Clear floats after the columns */
+			.rownew:after {
+				content: "";
+				display: table;
+				clear: both;
+			}
+				
+			input[type=submit]:hover {
+			}
+			input[type=submit] {
+				width: 35%;
+				color: white;
+				padding: 5px 2px;
+				margin: 1px 5px;
+				border: none;
+				border-radius: 10px;
+				cursor: pointer;
+				font-weight: bold;
+			}
+
+			.rect {
+			height: 17px;
+			width: 150px;
+			margin: -7px 180px;
+			position: relative;
+			top:-10px;
+			background-color: #d9e3e9;
+			}
+			.sclscls {
+			border: 0px solid black;
+			width: 500px;
+			height: 250px;
+			overflow: scroll;
+			}
+			.scldcls {
+			border: 0px solid black;
+			width: 500px;
+			height: 250px;
+			overflow: scroll;
+			}
+			.but
+			{
+			color:red;
+			display:flex;
+			justify-content:flex-end;
+			align-items:center; 
+			}
+			.removebtncls
+			{
+			height: 12px;
+		    width: 30px;
+		    margin: -9px 330px;
+		    position: relative;
+		    top: -20px;
+		    font-size: 10px;
+		    font-weight:bold;
+			}
+			
+					  .button {
+  background-color: Orange;  
+  border-radius: 5px;
+  color: white;
+  padding: .5em;
+  text-decoration: none;
+}
+
+.button:focus,
+.button:hover {
+  background-color: Green;
+  color: White;
+    text-decoration: none;
+
+}
+
+.content {
+  display: none;
+  margin: 1em 0;
+}
+
+.content.active,
+.no-js .content {
+  display: block;
+}
+
+.button1 {
+  background-color: orange;  
+  border-radius: 5px;
+  color: white;
+  padding: .5em;
+  text-decoration: none;
+}
+
+.button1:focus,
+.button1:hover {
+  background-color: Green;
+  color: White;
+    text-decoration: none;
+
+}
+
+.content {
+  display: none;
+  margin: 1em 0;
+}
+
+.content.active,
+.no-js .content {
+  display: block;
+}
+</style>
+
+        <!-- MetisMenu CSS -->
+        <link href="../css/metisMenu.min.css" rel="stylesheet">
+
+        <!-- Custom CSS -->
+        <link href="../css/pdx.css" rel="stylesheet">
+
+        <!-- Custom Fonts -->
+        <link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+       
+    </head>
+    <body>
+		<script type="text/javaScript">
+		
+			var gs_id= new Array();
+			var gt_id= new Array();	
+			var g_srcxml='';
+			var g_dstxml='';
+
+			function clearmap()
+			{
+				gs_id="";
+				gt_id="";
+				alert('All the Mappings are cleared. Save your changes by clicking on Save button.');
+			}
+			
+			function savemap()
+			{	
+				for(var K=0; K<gs_id.length; K++)
+				{
+				var vrsrc='',vrdst='', srcptr, dstptr, j=1;
+				var parentages, parentaged;
+				var srch=new Array(); var trgh= new Array();
+				var si=0,ti=0;
+				
+				/*src*/
+				var x, y, i, jum = 0;
+				parser = new DOMParser();
+				xmlDoc = parser.parseFromString(g_srcxml,"text/xml");
+				x = xmlDoc.documentElement;
+				y = x.children;
+				/*dst*/
+				var x1, y1, i1, jum1 = 0;
+				parser1 = new DOMParser();
+				xmlDoc1 = parser1.parseFromString(g_dstxml,"text/xml");
+				x1 = xmlDoc1.documentElement;
+				y1 = x.children;
+				
+				srcptr=gs_id[K].substr(3);
+				dstptr=gt_id[K].substring(5);
+				var srcp=parseInt(srcptr);
+				var dstp=parseInt(dstptr);
+				vrsrc=document.getElementById(gs_id[K]).innerText;
+				vrdst=document.getElementById(gt_id[K].substring(4)).innerText;
+				/*******************************************************
+				START TO GET SOURCE HIERARCHY
+				********************************************************/
+				parseXMLSRCM(x);
+				function parseXMLSRCM(xmlNode)
+						{
+							var node = xmlNode;
+							var childNodes = node.children;
+							var i;
+							jum++;
+							
+							if(jum === srcp)
+							{
+								
+							  	var pnode = node;
+							  	parentages = '';
+							  	while(pnode.nodeName != '#document')
+							  	{
+									parentages = pnode.nodeName + ">>" + parentages; 
+									pnode = pnode.parentNode;
+							  	}
+				  				
+				  			}
+				  			for(i=0; childNodes && i<childNodes.length; i++)
+				  			{
+								if(childNodes[i].children && childNodes[i].children.length > 0)
+					  				parseXMLSRCM(childNodes[i]);		
+								else
+								{ 
+									jum++;
+									
+					  				if(jum === srcp)
+					  				{
+										var pnode = childNodes[i];
+										parentages = '';
+										while(pnode.nodeName != '#document')
+										{
+											parentages = pnode.nodeName + ">>" + parentages; 
+											pnode = pnode.parentNode;
+										}
+										
+					 				}
+								}
+				  			}
+						}
+				/***********************************************************
+					END TO GET SOURCE HIERARCHY
+				/***********************************************************/
+				/***********************************************************
+					START TO GET DEST HIERARCHY
+				************************************************************/
+
+				parseXMLDSTM(x1);
+				function parseXMLDSTM(xmlNode)
+						{
+							var node1 = xmlNode;
+							var childNodes = node1.children;
+							var i1;
+							jum1++;
+							
+							if(jum1 === dstp)
+							{
+								
+							  	var pnode1 = node1;
+							  	parentaged = '';
+							  	while(pnode1.nodeName != '#document')
+							  	{
+									parentaged = pnode1.nodeName + ">>" + parentaged; 
+									pnode1 = pnode1.parentNode;
+							  	}
+				  				
+				  			}
+				  			for(i1=0; childNodes && i1<childNodes.length; i1++)
+				  			{
+								if(childNodes[i1].children && childNodes[i1].children.length > 0)
+					  				parseXMLDSTM(childNodes[i1]);		
+								else
+								{ 
+									jum1++;
+									
+					  				if(jum1 === dstp)
+					  				{
+									
+										var pnode1 = childNodes[i1];
+										 parentaged = '';
+										while(pnode1.nodeName != '#document')
+										{
+											parentaged = pnode1.nodeName + ">>" + parentaged; 
+											pnode1 = pnode1.parentNode;
+										}
+										
+					 				}
+								}
+				  			}
+						}
+				/************************************************************
+				END TO GET DEST HIERARCHY
+				*************************************************************/
+				srch[si]=parentages.substring(0,parentages.length-2);
+				trgh[ti]=parentaged.substring(0,parentaged.length-2);
+				si++;
+				ti++;
+							
+				console.log(parentages.substring(0,parentages.length-2)+'>>>>'+parentaged.substring(0,parentaged.length-2));
+				
+				
+				}	
+				
+				var obj_val ='';
+				obj_val = {
+				 "source":srch
+			,"target":trgh};
+				for(i=0;i<srch.length;i++)
+					{
+					console.log(obj_val.source[i]+'>>'+obj_val.target[i]);
+					}
+
+				//var myJsonString = JSON.stringify(srch);	
+				
+				/*var mapdataobj='';
+				var mapdatadetail='';
+				var mainstr="{\"mapdetail\":["
+				var string1="{\"source\":";
+				var string2=",\"target\":";
+				
+				for(i=0; i<srch.length; i++)
+				{
+					//console.log(srch.length);
+					//console.log(i);
+					if (i<srch.length-1) 
+					{
+					mapdatadetail += string1+'\"'+srch[i]+'\"'+string2+'\"'+trgh[i]+'\"'+'},';
+					}
+					if (i == srch.length-1)
+					{
+					mapdatadetail += string1+'\"'+srch[i]+'\"'+string2+'\"'+trgh[i]+'\"'+'}]}';
+					}
+				}
+			
+			
+			
+				mapdataobj=mainstr+mapdatadetail;
+				console.log(mapdataobj);
+
+				obj = JSON.parse(mapdataobj);
+				console.log(obj.mapdetail[1].source + ">>" + obj.mapdetail[1].target);*/
+				
+				/*
+				var testjson = '{"mapdetail":[' +
+'{"source":"John","target":"Doe" },' +
+'{"source":"Anna","target":"Smith" },' +
+'{"source":"Peter","target":"Jones" }]}';
+
+			obj1 = JSON.parse(testjson);
+			
+			console.log(obj1.mapdetail[1].source+ ">>"+ obj1.mapdetail[1].target);*/
+
+				inscat_mapper_ui();
+				alert('Successfully Saved !!!');
+			}
+			
+			function inscat_mapper_ui()
+			{
+				var data = null;
+				var createcat_map = new XMLHttpRequest();
+				
+				createcat_map.withCredentials = true;
+				createcat_map.addEventListener("readystatechange", function () {
+														if (this.readyState === 4) 
+														{
+				     										alert(this.responseText);
+				   										}
+						});
+
+				createcat_map.open("POST", "https://144.21.93.75/ords/PDB1/ipsolws/mappermain/post");
+				createcat_map.setRequestHeader("authorization", "Basic cGR4OnBkeA==");
+				createcat_map.setRequestHeader("import_map_name", document.getElementById("imptxt").value);
+				createcat_map.setRequestHeader("connection_name", document.getElementById("connid").value);
+				createcat_map.setRequestHeader("source_category_name", document.getElementById("srccattxt").value);
+				createcat_map.setRequestHeader("target_category_name", document.getElementById("Tgttxt").value);
+				createcat_map.setRequestHeader("source_xml_file_name", document.getElementById("srcfile").value);
+				createcat_map.setRequestHeader("target_xml_file_name", document.getElementById("trgfile").value);
+				createcat_map.setRequestHeader("source_array_values", gs_id);
+				createcat_map.setRequestHeader("target_array_values", gt_id);
+				//createcat_map.setRequestHeader("source_xml_parsed_contents", document.getElementById("pText").innerHTML);
+				//createcat_map.setRequestHeader("target_xml_parsed_contents", document.getElementById("pText1").innerHTML);
+				createcat_map.setRequestHeader("cache-control", "no-cache");
+				createcat_map.setRequestHeader("postman-token", "031bb243-5852-a010-df4e-e86c04c9ca2e");
+				createcat_map.send(data);		 
+				
+			}
+			function allowDrop(ev) 
+			{
+				ev.preventDefault();
+			}
+
+			function drag(ev) 
+			{
+				ev.dataTransfer.setData("text", ev.target.id);
+			}
+
+			function drop(ev) 
+			{
+				debugger;
+				ev.preventDefault();
+				var data = ev.dataTransfer.getData("text");
+				var ele = document.createElement("span");
+				if(document.getElementById(data).children && document.getElementById(data).children.length > 0)
+				{
+					ele.innerText = document.querySelectorAll('#'+data+' > p')[0].innerText;
+				}
+				
+				ele.innerText = document.getElementById(data).innerText;
+				ev.target.appendChild(ele);
+				gs_id.push(data);
+				gt_id.push(ev.target.id)
+				
+			}
+			function removeele(elid)
+			{
+			var clid='';
+			clid='dstid'+elid;
+			document.getElementById(clid).innerHTML="";
+			var t_ind = gt_id.indexOf(clid);
+			gt_id.splice( t_ind, 1 );
+			gs_id.splice( t_ind, 1 );
+			}
+			
+		var opendstFile = function(event)
+		{
+				var input = event.target;
+				var reader = new FileReader();
+				reader.onload = function()
+				{
+					g_dstxml = reader.result;
+					var x, y, i,rum = 0;
+					var elearr1=[];
+					var resultdata1='';
+					parser = new DOMParser();
+					xmlDoc = parser.parseFromString(g_dstxml,"text/xml");				
+					x = xmlDoc.documentElement;
+					y = x.children;
+					parsetgtXML(x);
+				function parsetgtXML(xmlNode)
+				{
+					var node = xmlNode;
+					var childNodes = node.children;
+					var i;
+					rum++;
+					elearr1.push('<span id="d'+rum+'">' + '<ul id="myUL"><li><span class="caret1">' + node.nodeName + '</span><div class="rect" ondrop="drop(event)" ondragover="allowDrop(event)" id="dstid'+rum+'"></div><div class="removebtncls"><a href="#" onclick="removeele('+rum+')"><img src="../images/delete.png" style="height:20px"></a></div>'+'<ul class="nested1">');
+				  	for(i=0; childNodes && i<childNodes.length; i++)
+				  	{
+						if(childNodes[i].children && childNodes[i].children.length > 0)
+					  	parsetgtXML(childNodes[i]);		
+						else
+						{	rum++;
+							elearr1.push('<li><span id="d'+rum+'">'+childNodes[i].nodeName + '</li></span><div class="rect"  ondrop="drop(event)" ondragover="allowDrop(event)" id="dstid'+rum+'"></div><div class="removebtncls"><a href="#" onclick="removeele('+rum+')"><img src="../images/delete.png" style="height:20px"></a></div></span></li>');
+						}
+				  	}
+				 	elearr1.push('</ul>');
+				}			
+					
+					for(i=0; i < elearr1.length; i++)
+				{
+				resultdata1 += elearr1[i];
+				}
+			
+				document.getElementById('pText1').innerHTML = resultdata1;
+				
+				var toggler1 = document.getElementsByClassName("caret1");
+				var t1;
+				
+				for (t1 = 0; t1 < toggler1.length; t1++) 
+				{
+					toggler1[t1].addEventListener("click", function() {
+																this.parentElement.querySelector(".nested1").classList.toggle("active1");
+																this.classList.toggle("caret-down1");
+															  			});
+				}					
+				};
+			reader.readAsText(input.files[0]);
+		};
+		
+		var opensrcFile = function(event) 
+		{
+			var input = event.target;
+			var reader = new FileReader();
+			reader.onload = function()
+			{
+				g_srcxml = reader.result;
+				var x, y, i, jum = 0;
+				var resultdata='';
+				var elearr=[];
+				parser = new DOMParser();
+				xmlDoc = parser.parseFromString(g_srcxml,"text/xml");
+				x = xmlDoc.documentElement;
+				y = x.children;
+				parseXML(x);			
+				function parseXML(xmlNode)
+				{
+				  	var node = xmlNode;
+				  	var childNodes = node.children;
+				  	var i;
+				  	jum++;
+				  	elearr.push('<span  draggable="true" ondragstart="drag(event)" id="sid'+jum+'"></span>' + '<ul  id="myUL"><li><span class="caretsrc">' + node.nodeName + '</span>' + '<ul class="nestedsrc">');
+				  	for(i=0; childNodes && i<childNodes.length; i++)
+				  	{
+						if(childNodes[i].children && childNodes[i].children.length > 0)
+					 	{
+					 		parseXML(childNodes[i]);	
+						}				  
+						else
+						{
+					  		jum++;
+					  		elearr.push('</span><li><span  draggable="true" ondragstart="drag(event)" id="sid'+jum+'">' + childNodes[i].nodeName + '</span></li>');
+						}
+				  	}
+				  elearr.push('</ul></li></ul>');
+				}
+			
+				for(i=0; i < elearr.length; i++)
+				{
+					resultdata += '<span draggable="true" ondragstart="drag(event)" id="srcid'+i+'">'+elearr[i]+"</span>"
+				}
+					
+				document.getElementById('pText').innerHTML = resultdata;
+					
+				var toggler = document.getElementsByClassName("caretsrc");
+				var t;
+				
+				for (t = 0; t < toggler.length; t++) 
+				{
+					
+					toggler[t].addEventListener("click", function() {
+															this.parentElement.querySelector(".nestedsrc").classList.toggle("activesrc");
+															this.classList.toggle("caret-downsrc");
+														  			});
+				}					
+			};
+					
+			reader.readAsText(input.files[0]);
+		};
+		
+		</script>
+
+        <div id="wrapper">
+
+            <!-- Navigation -->
+             <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="index.html">Product Data Exchange <i>PDX</i></a>
+                </div>
+
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <ul class="nav navbar-nav navbar-left navbar-top-links">
+                    <li><a href="#"><i class="fa fa-home fa-fw"></i> Home</a></li>
+                </ul>
+
+                <ul class="nav navbar-right navbar-top-links">
+                    <li class="dropdown navbar-inverse">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-bell fa-fw"></i> <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu dropdown-alerts">
+                            <li>
+                                <a href="#">
+                                    <div>
+                                        <i class="fa  fa-plus-square"></i> New Products Added
+                                        <span class="pull-right text-muted small">2 minutes ago</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <div>
+                                        <i class="fa  fa-plus-square"></i> 3 New E-Tailer
+                                        <span class="pull-right text-muted small">5 hours ago</span>
+                                    </div>
+                                </a>
+                            </li>
+                           <li>
+                                <a class="text-center" href="#">
+                                   <center> <strong>See All Alerts</strong></center>
+                                    <i class="fa fa-angle-right"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+					
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-user fa-fw"></i> User1 <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user">
+                            <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <!-- /.navbar-top-links -->
+
+                <div class="navbar-default sidebar" role="navigation">
+                    <div class="sidebar-nav navbar-collapse">
+                        <ul class="nav" id="side-menu">
+                            <li class="sidebar-search">
+                                <div class="input-group custom-search-form">
+                                    <input type="text" class="form-control" placeholder="Search...">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-primary" type="button">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                </span>
+                                </div>
+                                <!-- /input-group -->
+                            </li>
+                            <li>
+                                <a href="dashboard.html" class="active"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            </li>
+                            
+                            <li>
+                                <a href="tables.html"><i class="fa fa-table fa-fw"></i>Catalog Management <span class="fa arrow"></span></a></a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="catalog.html">Manage Catalog</a>
+                                    </li>
+                                    <li>
+                                        <a href="mapping.html">Create Catalog Mapping</a>
+                                    </li>
+                                     <li>
+                                        <a href="mapping_update.html">Update Catalog Mapping</a>
+                                    </li>
+                                </ul>
+                            </li>
+                           <li>
+                                <a href="#"><i class="fa fa-table fa-fw"></i>Products <span class="fa arrow"></span></a></a>
+                                <ul class="nav nav-second-level">
+                                <li>
+                                        <a href="products.html">View All Products</a>
+                                    </li>
+                                    
+                                </ul>	
+                            </li>
+														<li>
+                                <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Administration<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="Manage Source.html">Manage Sources</a>
+                                    </li>
+                                    <li>
+                                        <a href="Manage Target.html">Manage Targets</a>
+                                    </li>
+                                </ul>
+                                <!-- /.nav-second-level -->
+                            </li>
+                            
+                           
+                            
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Page Content -->
+            <div id="page-wrapper">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h1 class="page-header">Create Product XML PARSING and MAPPING</h1>
+                            
+                           
+					<span class="but">
+				<input type="submit" style="width:7%" class="button1" value="Clear" onclick="clearmap()"/>
+				<input type="submit" style="width:7%" class="button" value="Save" onclick="savemap()"/> 
+				</span>
+		<center>
+		<table>
+		<tr>
+		<td><b>Import Map Name: </b></td>
+		<td><input type="text" class="form-control" id="imptxt" name='Import Map Name' placeholder='Your Import Map Name'/></td>
+		</tr>
+		<tr>
+		<td><br></td>
+		<td><br></td>
+		</tr>
+		<tr>
+		<td><b>Connection Name: </b></td>
+		<td>			<select name="connname" id="connid" class="form-control">
+			</select></td>
+		</tr>
+		<tr>
+		<td><br></td>
+		<td><br></td>
+		</tr>
+		<tr>
+		<td><b>Source Category:</b></td>
+		<td><input type="text" class="form-control" id="srccattxt" name='Source Category:' placeholder='Your Source Category'/></td>
+		</tr>
+		<tr>
+		<td><br></td>
+		<td><br></td>
+		</tr>
+		<tr>
+		<td><b>Target Category:</b></td>
+		<td><input type="text" class="form-control" id="Tgttxt" name='Target Category:' placeholder='Your Target Category'/></td>
+		</tr>
+		<tr>
+		<td><br></td>
+		<td><br></td>
+		</tr>
+		<tr>
+		<td><b>Browse Source XML: </b></td>
+		<td><input type='file' name="filename" id="srcfile" onchange="opensrcFile(event)"/></td>
+		</tr>
+		<tr>
+		<td><br></td>
+		<td><br></td>
+		</tr>
+		<tr>
+		<td><b>Browse Target XML:</b></td>
+		<td><input type='file' name="filename" id="trgfile" onchange="opendstFile(event)"/></td>
+		</tr>
+		</table>
+		</center>
+		
+		<script>
+		function getconnname()
+		{
+			
+			var api="https://144.21.93.75/ords/PDB1/ipsolws/sourcereg/get/";
+			var data = null;
+			var test1="'{\"source\":";
+			console.log(test1);
+			var getconnam = new XMLHttpRequest();
+			getconnam.withCredentials = true;
+				
+			getconnam.addEventListener("readystatechange", function () {
+													var voptions='', convalue='';
+													  if (this.readyState === 4) 
+													  {    
+														var tj = null; 
+														
+														tj=JSON.parse(this.responseText);																									
+														for (i=0; i<tj.items.length; i++)
+														{
+															convalue= tj.items[i].connection_name;
+														voptions +='<option value="'+convalue+'">'+convalue+'</option>';
+														}
+														document.getElementById("connid").innerHTML=voptions;
+													   }
+						});
+				
+			
+				getconnam.open("GET", api);
+				getconnam.setRequestHeader("authorization", "Basic cGR4OnBkeA==");
+				getconnam.setRequestHeader("cache-control", "no-cache");
+				getconnam.setRequestHeader("postman-token", "81dbdefd-6239-44be-1820-00510628cad0");
+				getconnam.send(data);				
+		}
+		
+		getconnname();
+		</script>
+		
+		<div  class "rownew">
+		<div class = "columnnew1">
+
+			
+			<p class="button js-button" role="button"  style="text-align:center"><b>SOURCE XML ELEMENTS</b></p>
+				<div class='sclscls'>
+					<p ondrop="drop(event)" ondragover="allowDrop(event)""><p id="pText"></p></p>
+				</div>
+		</div>
+			
+			<div  class = "columnnew2">	
+			<p  class="button js-button" role="button" style="text-align:center"><b>TARGET XML ELEMENTS</b></p>
+				<div class='scldcls'><p id="pText1"></p></div>
+			</div>
+		</div>
+                            
+                            
+                        </div>
+                        <!-- /.col-lg-12 -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.container-fluid -->
+            </div>
+            <!-- /#page-wrapper -->
+
+        </div>
+        <!-- /#wrapper -->
+
+        <!-- jQuery -->
+        <script src="../js/jquery.min.js"></script>
+
+        <!-- Bootstrap Core JavaScript -->
+        <script src="../js/bootstrap.min.js"></script>
+
+        <!-- Metis Menu Plugin JavaScript -->
+        <script src="../js/metisMenu.min.js"></script>
+
+        <!-- Custom Theme JavaScript -->
+        <script src="../js/pdx.js"></script>
+
+    </body>
+</html>

@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+             <title>Product Data Exchange <i>PDX</i>i></title>
+
+        <!-- Bootstrap Core CSS -->
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- MetisMenu CSS -->
+        <link href="../css/metisMenu.min.css" rel="stylesheet">
+		
+				 <link href="Style.css" rel="stylesheet">
+
+
+        <!-- Custom CSS -->
+        <link href="../css/pdx.css" rel="stylesheet">
+		
+		        <link href="../css/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+		<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+		
+				 <link href="sweetalert.css" rel="stylesheet">
+		<script src="sweetalert.js"></script>
+
+        
+<link href="../css/popup/jquery.simple-popup.min.css" rel="stylesheet" type="text/css">
+
+        <!-- DataTables Responsive CSS -->
+        <link href="../css/dataTables/dataTables.responsive.css" rel="stylesheet">
+
+
+        <!-- Custom CSS -->
+        <link href="../css/pdx.css" rel="stylesheet">
+		<style>
+		
+		.scroll-lock {
+   overflow-x: hidden; 
+}
+		
+		
+		</style>
+		 
+		
+
+        <!-- Custom Fonts -->
+        <link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+        
+
+        <!-- Custom Fonts -->
+        <link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+<script src="Script.js"></script>
+<script>
+		
+		function myFunction() {
+  var input, filter, table, tr, td, i;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("subsiteList");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+
+		function myFunction2() {
+  var input, filter, table, tr, td, i;
+  input = document.getElementById("myInput2");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("subsiteList");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[1];
+    if (td) {
+      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+
+		</script>
+		<style>
+		  
+		  		
+		  
+		  </style>
+    </head>
+    <body>
+
+        <div id="wrapper">
+
+            <!-- Navigation -->
+             <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="index.html">Product Data Exchange <i>PDX</i></a>
+                </div>
+
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <ul class="nav navbar-nav navbar-left navbar-top-links">
+                    <li><a href="#"><i class="fa fa-home fa-fw"></i> Home</a></li>
+                </ul>
+
+                <ul class="nav navbar-right navbar-top-links">
+                    <li class="dropdown navbar-inverse">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-bell fa-fw"></i> <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu dropdown-alerts">
+                            <li>
+                                <a href="#">
+                                    <div>
+                                        <i class="fa  fa-plus-square"></i> New Products Added
+                                        <span class="pull-right text-muted small">2 minutes ago</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <div>
+                                        <i class="fa  fa-plus-square"></i> 3 New E-Tailer
+                                        <span class="pull-right text-muted small">5 hours ago</span>
+                                    </div>
+                                </a>
+                            </li>
+                           <li>
+                                <a class="text-center" href="#">
+                                   <center> <strong>See All Alerts</strong></center>
+                                    <i class="fa fa-angle-right"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+					
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-user fa-fw"></i> User1 <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user">
+                            <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <!-- /.navbar-top-links -->
+
+                <div class="navbar-default sidebar" role="navigation">
+                    <div class="sidebar-nav navbar-collapse">
+                        <ul class="nav" id="side-menu">
+                            <li class="sidebar-search">
+                                <div class="input-group custom-search-form">
+                                    <input type="text" class="form-control" placeholder="Search...">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-primary" type="button">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                </span>
+                                </div>
+                                <!-- /input-group -->
+                            </li>
+                            <li>
+                                <a href="dashboard.html" class="active"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            </li>
+                            
+<li>
+                                <a href="tables.html"><i class="fa fa-table fa-fw"></i>Catalog Management <span class="fa arrow"></span></a></a>
+                                <ul class="nav nav-second-level">
+ <li>
+                                        <a href="catalog.html">Manage Catalog</a>
+                                    </li>
+                                    <li>
+                                        <a href="mapping.html">Create Catalog Mapping</a>
+                                    </li>
+                                     <li>
+                                        <a href="mapping_update.html">Update Catalog Mapping</a>
+                                    </li>
+                                </ul>
+                            </li>
+                                                        <li>
+                                <a href="#"><i class="fa fa-table fa-fw"></i>Products <span class="fa arrow"></span></a></a>
+                                <ul class="nav nav-second-level">
+                                <li>
+                                        <a href="products.html">View All Products</a>
+                                    </li>
+                                    
+                                </ul>	
+                            </li>
+							<li>
+                                <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Administration<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="Manage Source.html">Manage Sources</a>
+                                    </li>
+                                    <li>
+                                        <a href="Manage Target.html">Manage Targets</a>
+                                    </li>
+                                </ul>
+                                <!-- /.nav-second-level -->
+                            </li>
+                            
+                           
+                            
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Page Content -->
+            <div id="page-wrapper" class="scroll-lock">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h1 class="page-header" id="name"></h1>
+							
+                            <div class="panel-body">
+								                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pleft0 pright0">
+                        <h5 id="BtnAlign">
+                           <a class="addbtn" target="_blank" style="color:white; text-decoration:none" data-target="#ModalForNewProject" data-toggle="modal"><img src="../images/addnew.png" title="Add New Catalog"></a>
+                        
+                       
+                        
+                        </h5>
+                        <br>
+                     </div>
+							
+							
+                                <div class="dataTable_wrapper">
+                                <table class="table table-striped table-bordered table-hover" id="subsiteList1">
+                                    <div class="container">
+
+
+</div>
+									
+                                        <thead>
+                           <tr>
+                             <th>Item Number</th>
+                              <th>Item Class</th>
+                              <th>Description</th>
+							  <th>Approval Status</th>
+							  <th>Primary Unit of Measure</th>
+							  <th>Item Status</th>
+							  <th>Life Cycle Phase</th>
+							  <th>Status</th>
+                              <th>Remove Product</th>
+                              
+                              
+                             
+                           </tr>
+                        </thead>
+                                        <tbody>   
+                                        </tbody>
+                                    </table>
+								      
+                                </div>
+                                <!-- /.table-responsive -->
+                                
+                            </div>
+							
+														<div class="modal fade" id="ModalForNewProject" role="dialog" title="Create new Project">  
+            <div class="modal-dialog">  
+                <fieldset>  
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 cls-contriute">  
+                        <h5 class="contributtitle">Add Product Information</h5>  
+                    </div>  
+                </fieldset>  
+                <div id="ModelBody">  
+                    <div class="form-horizontal well bs-component cls-divthoug" id="ModalValidation">  
+                        <fieldset id="bodymodal">  
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group"> <label class="col-lg-4 col-md-4 col-sm-4 col-xs-4 cls-thought">Select Product 
+<span class="red">*</span>  
+</label>  
+                                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8"> 
+								
+ <select id="locality-dropdown" onchange="show(this)">
+        <option value="">-- Select --</option>
+    </select>                            </div>  
+                           
+                           
+                           
+                            
+                            
+                            
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">  
+                                <div class="col-lg-offset-7 col-lg-2 cls-divbtn "> <input class="cls-savecancel" id="btnsave" type="button" value="Submit" onclick="addProduct();" data-dismiss="modal""  /> </div>  
+                                <div class="col-lg-2 col-lg-offset-1"> <input class="cls-savecancel" type="reset" value="Cancel" id="btnCancel" data-dismiss="modal" /> </div>
+
+                            </div>  
+                        </fieldset>  
+                    </div>  
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group cls-sucees" style="background-color:#edeff2">  
+                        <div id="successMessage"></div>  
+                    </div>  
+                </div>  
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group LoadingDiv" id="loader" style="display:none;padding: 66px;background-color: #0a2f7d!important;">  
+                    <div class="loader">Loading...</div>  
+                    <div class="loader1">  
+                        <p class="ones"></p>  
+                    </div>  
+                </div>  
+            </div>  
+        </div>
+                            
+    
+</div>
+
+    
+                        </div>
+                        <!-- /.col-lg-12 -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.container-fluid -->
+            </div>
+            <!-- /#page-wrapper -->
+
+        </div>
+        <!-- /#wrapper -->
+
+        <!-- jQuery -->
+                <script src="../js/jquery.min.js"></script>
+<script>
+$(function(){
+
+var appendthis =  ("<div class='modal-overlay js-modal-close'></div>");
+
+	$('a[data-modal-id]').click(function(e) {
+		e.preventDefault();
+    $("body").append(appendthis);
+    $(".modal-overlay").fadeTo(500, 0.7);
+    //$(".js-modalbox").fadeIn(500);
+		var modalBox = $(this).attr('data-modal-id');
+		$('#'+modalBox).fadeIn($(this).data());
+	});  
+  
+  
+$(".js-modal-close, .modal-overlay").click(function() {
+    $(".modal-box, .modal-overlay").fadeOut(500, function() {
+        $(".modal-overlay").remove();
+    });
+ 
+});
+ 
+$(window).resize(function() {
+    $(".modal-box").css({
+        top: ($(window).height() - $(".modal-box").outerHeight()) / 2,
+        left: ($(window).width() - $(".modal-box").outerWidth()) / 2
+    });
+});
+ 
+$(window).resize();
+ 
+});
+</script>
+
+
+<script src="../js/popup/jquery.simple-popup.min.js"></script>
+<script>
+$(document).ready(function() {
+  $("a.demo-1").simplePopup();
+  $("a.demo-2").simplePopup({ type: "html", htmlSelector: "#popup1" });
+});
+</script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-36251023-1']);
+  _gaq.push(['_setDomainName', 'jqueryscript.net']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+        <!-- Bootstrap Core JavaScript -->
+        <script src="../js/bootstrap.min.js"></script>
+
+        <!-- Metis Menu Plugin JavaScript -->
+        <script src="../js/metisMenu.min.js"></script>
+
+        <!-- DataTables JavaScript -->
+        <script src="../js/dataTables/jquery.dataTables.min.js"></script>
+        <script src="../js/dataTables/dataTables.bootstrap.min.js"></script>
+
+        <!-- Custom Theme JavaScript -->
+        <script src="../js/pdx.js"></script>
+
+        <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+        <script>
+		
+		function getProductByCatalog(){ 
+
+			var url = window.location.search;
+url = url.replace("?", '');
+
+var url2=url.replace(/%20/g, " ");
+
+
+		
+		var SelectProductId=localStorage.getItem('CatlogID');
+	
+	$.ajax({
+  
+    async: true,    
+    url: "https://144.21.93.75/ords/PDB1/ipsolws/catalogasc/get/"+url2+"",
+    method: "GET",
+
+    headers:{
+    "accept":"application/json;odata=verbose",
+    "content-type": "application/json;odata=verbose"
+    
+    },
+    success: function(data){
+
+     for(var i = 0; i < data.items.length; i++){
+    
+        var html = "<tr><td>"+data.items[i].item_number+"</td><td>"+data.items[i].item_class+"</td></td><td>"+data.items[i].item_description+"</td><td>"+data.items[i].approval_status+"</td><td>"+data.items[i].primary_unit_of_measure+"</td><td>"+data.items[i].item_status+"</td><td>"+data.items[i].life_cycle_phase+"</td><td>"+data.items[i].status+"</td><td><a href='#' onclick='deleteItem("+data.items[i].id+");'><img src='../images/delete.png'></a></td></tr>";
+        $('.table tbody').append(html);
+
+    }
+
+  
+      table = $('#subsiteList1').DataTable();
+    },
+    error: function(error){
+    console.log(JSON.stringify(error));
+    
+    }
+    
+    })
+	
+
+	
+	
+	
+}
+            $(document).ready(function() {
+			getProductByCatalog();
+			
+
+
+                $('#dataTables-example').DataTable({
+                        responsive: true
+                });
+            });
+			
+			
+
+        </script>
+		
+		<script>
+		
+		function addProduct(){
+		
+		var data = null;
+
+var xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
+
+xhr.addEventListener("readystatechange", function () {
+  if (this.readyState === 4) {
+    console.log(this.responseText);
+  }
+});
+var e = document.getElementById("locality-dropdown");
+var strUser = e.options[e.selectedIndex].value;
+
+var url = window.location.search;
+url = url.replace("?", '');
+
+var url2=url.replace(/%20/g, " ");
+
+xhr.open("POST", "https://144.21.93.75/ords/PDB1/ipsolws/catalogasc/post");
+xhr.setRequestHeader("p_catalog_id", url2);
+xhr.setRequestHeader("p_inventory_item_id", strUser);
+xhr.setRequestHeader("catalog_name", "Catalog NEW");
+
+xhr.setRequestHeader("cache-control", "no-cache");
+xhr.setRequestHeader("postman-token", "4a5d540c-130f-e9ab-f5db-7657791f8ffc");
+
+
+$.ajax(
+                {
+                 type:'POST',
+                   url: 'https://144.21.93.75/ords/PDB1/ipsolws/catalogasc/post',
+
+                   success:function(){
+				   xhr.send(data); 
+
+                     
+swal("Added!", "Product Added successfully", "success");
+  
+            if ($.fn.DataTable.isDataTable('#subsiteList1')) {  
+                $('#subsiteList1').DataTable().destroy();  
+            }  
+            $('#subsiteList1 tbody').empty();  
+  
+  
+  
+getProductByCatalog();
+
+	
+	
+	
+                   },
+                   error:function(){
+                      console.log("error");
+                   }
+                }
+              );
+
+
+
+
+
+
+
+
+
+}
+
+function deleteItem(value){
+	
+
+$.ajax({
+	 
+url: "https://144.21.93.75/ords/PDB1/ipsolws/catalogasc/delete/"+ value +"",
+method: "DELETE",
+headers:{
+"accept":"application/json;odata=verbose",
+"content-type": "application/json;odata=verbose",
+"X-RequestDigest": $("#__REQUESTDIGEST").val(),
+"IF-MATCH": "*",
+"X-HTTP-Method":"DELETE"
+},
+success: function(data){
+
+
+    if ($.fn.DataTable.isDataTable('#subsiteList1')) {
+        $('#subsiteList1').DataTable().destroy();
+    }
+    $('#subsiteList1 tbody').empty();
+	
+	swal("Deleted!", "Product Deleted successfully", "success");
+
+
+  getProductByCatalog();
+  
+
+},
+error: function(error){
+console.log(JSON.stringify(error));
+
+}
+
+})
+
+
+}
+
+
+
+
+		
+		</script>
+		
+		
+		
+		
+		
+		<script>
+		
+		let dropdown = document.getElementById('locality-dropdown');
+dropdown.length = 0;
+
+let defaultOption = document.createElement('option');
+defaultOption.text = 'Choose Product';
+
+dropdown.add(defaultOption);
+dropdown.selectedIndex = 0;
+
+const url = 'https://144.21.93.75/ords/PDB1/ipsolws/productdet/get/';
+
+const request = new XMLHttpRequest();
+request.open('GET', url, true);
+
+request.onload = function() {
+  if (request.status === 200) {
+    const data = JSON.parse(request.responseText);
+    let option;
+    for (let i = 0; i < data.items.length; i++) {
+      option = document.createElement('option');
+      option.text = data.items[i].description;
+      option.value = data.items[i].inventory_item_id;
+      dropdown.add(option);
+    }
+   } else {
+    // Reached the server, but it returned an error
+  }   
+}
+
+request.onerror = function() {
+  console.error('An error occurred fetching the JSON from ' + url);
+};
+
+request.send();
+		
+		</script>
+
+
+    </body>
+	
+	<script>
+	
+var a=localStorage.getItem("clicked");
+
+var b=localStorage.getItem("clicked");
+
+   document.getElementById("name").innerHTML=a;
+   
+
+	
+
+	
+	</script>
+</html>

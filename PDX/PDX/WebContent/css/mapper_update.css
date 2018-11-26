@@ -1,0 +1,136 @@
+ body {overflow-x: hidden;}
+			ul, #myUL {
+			  list-style-type: none;
+			}
+
+			#myUL {
+			  margin: 0;
+			  padding: 0;
+			}
+
+
+			.caretsrc {
+			  cursor: pointer;
+			  -webkit-user-select: none; /* Safari 3.1+ */
+			  -moz-user-select: none; /* Firefox 2+ */
+			  -ms-user-select: none; /* IE 10+ */
+			  user-select: none;
+			}
+
+			.caretsrc::before {
+			  content: "\25B6";
+			  color: black;
+			  display: inline-block;
+			  margin-right: 6px;
+			}
+
+			.caret-downsrc::before {
+			  -ms-transform: rotate(90deg); /* IE 9 */
+			  -webkit-transform: rotate(90deg); /* Safari */'
+			  transform: rotate(90deg);  
+			}
+
+			.nestedsrc {
+			  display: none;
+			}
+
+			.activesrc {
+			  display: block;
+			}	
+
+			.caret1 {
+			  cursor: pointer;
+			  -webkit-user-select: none; /* Safari 3.1+ */
+			  -moz-user-select: none; /* Firefox 2+ */
+			  -ms-user-select: none; /* IE 10+ */
+			  user-select: none;
+			}
+
+			.caret1::before {
+			  content: "\25B6";
+			  color: black;
+			  display: inline-block;
+			  margin-right: 6px;
+			}
+
+			.caret-down1::before {
+			  -ms-transform: rotate(90deg); /* IE 9 */
+			  -webkit-transform: rotate(90deg); /* Safari */'
+			  transform: rotate(90deg);  
+			}
+
+			.nested1 {
+			  display: none;
+			}
+
+			.active1{
+			  display: block;
+			}				
+				
+	
+			* {
+				box-sizing: border-box;
+			}
+	
+			/* Create two equal columns that floats next to each other */
+			.columnnew1 {
+				float: left;
+				width: 50%;
+				padding: 10px;
+				height: 300px; /* Should be removed. Only for demonstration */
+			}
+			.columnnew2 {
+				float: right;
+				width: 50%;
+				padding: 10px;
+				height: 300px; /* Should be removed. Only for demonstration */
+			}			
+	
+			/* Clear floats after the columns */
+			.rownew:after {
+				content: "";
+				display: table;
+				clear: both;
+			}
+				
+			input[type=submit]:hover {
+				background-color: 33B8FF;
+			}
+			input[type=submit] {
+				width: 35%;
+				background-color: #337ab7;
+				color: white;
+				padding: 5px 2px;
+				margin: 1px 5px;
+				border: none;
+				border-radius: 10px;
+				cursor: pointer;
+				font-weight: bold;
+			}
+
+			.rect {
+			height: 16px;
+			width: 250px;
+			margin: -8px 180px;
+			position: relative;
+			top:-10px;
+			background-color: lightskyblue;
+			}
+			.sclscls {
+			border: 0px solid black;
+			width: 500px;
+			height: 250px;
+			overflow: scroll;
+			}
+			.scldcls {
+			border: 0px solid black;
+			width: 500px;
+			height: 250px;
+			overflow: scroll;
+			}
+			.but
+			{
+			display:flex;
+			justify-content:flex-end;
+			align-items:center; 
+			}
